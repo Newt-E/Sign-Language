@@ -5,8 +5,13 @@ MediaPipe HandLandmarker (Python, server-side) digunakan untuk ekstraksi landmar
 dan model MLP Keras untuk inference klasifikasi gesture.
 """
 
-import json
 import os
+
+# Matikan deteksi GPU/CUDA agar TensorFlow tidak crash mencari driver CUDA di container CPU
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
+
+import json
 import queue
 from pathlib import Path
 from typing import NamedTuple
